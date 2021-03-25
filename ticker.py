@@ -21,18 +21,20 @@ def get_bid_ask(symbols: list):
     ticker = Ticker(symbols, validate=True, progress=True)
     ticker_details = ticker.summary_detail
     spreads = []
-    try:
-        for symbol in symbols:
+    for symbol in symbols:
+        try:
             bid = ticker_details[symbol].get("bid")
             ask = ticker_details[symbol].get("ask")
             if bid and ask:
                 spread = ask - bid
                 print(f"{symbol} {spread}", file=sys.stderr)
-                return (symbol, bid, ask, spread)
+                spreads.append((symbol, bid, ask, spread))
             else:
                 continue
-    except Exception as e:
-        print(f"{symbol} - Error {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"{symbol} - Error {e}", file=sys.stderr)
+            continue
+    return spreads
 
 
 if __name__ == "__main__":
