@@ -3,15 +3,13 @@ from transitions import Machine
 from yahooquery import Ticker
 
 class Merchant(object):
-    states = ['rest', 'greedy', 'fearful']
-
     def __init__(self, target, quantity, price_step, fraction_of_spread, wait_for_fill):
         self.target = target
         self.quantity = quantity
         self.price_step = price_step
         self.fraction_of_spread = fraction_of_spread
         self.wait_for_fill = wait_for_fill
-        
+
         self.order = None
 
         self.stock = Contract(symbol=target, exchange='SMART', secType='STK', currency='USD')
