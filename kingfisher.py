@@ -87,21 +87,21 @@ class Merchant(object):
 ib = IB()
 clientId = 1
 ib.connect('127.0.0.1', 7497, clientId=1)
-USLM = Merchant(target="USLM", quantity=5, price_step=.05, fraction_of_spread=.35, wait_for_fill=30)
+anfortas = Merchant(target="USLM", quantity=5, price_step=.05, fraction_of_spread=.35, wait_for_fill=30)
 
-machine = Machine(USLM, ['content', 'greedy', 'fearful'], initial='content')
+machine = Machine(anfortas, ['content', 'greedy', 'fearful'], initial='content')
 machine.add_transition('buy', 'content', 'greedy', before='scout', after='buy_low')
 machine.add_transition('buy', 'greedy', 'greedy', before='scout', after='buy_low')
 machine.add_transition('sell', 'greedy', 'fearful', before='scout', after='sell_high')
 machine.add_transition('sell', 'fearful', 'fearful', before='scout', after='sell_high')
 machine.add_transition('sleep', 'fearful', 'content', before='reset')  
 
-USLM.buy()
+anfortas.buy()
 while USLM.buy_quantity > 0:
     USLM.buy()
 
-USLM.sell()
+anfortas.sell()
 while USLM.sell_quantity > 0:
     USLM.sell()
     
-USLM.sleep()
+anfortas.sleep()
