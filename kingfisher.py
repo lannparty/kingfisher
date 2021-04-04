@@ -15,10 +15,12 @@ class Merchant(object):
         self.stock = Contract(symbol=target, exchange='SMART', secType='STK', currency='USD')
         self.reset()
 
+    # Reset desired quantity back to init quantity. To ready the Merchant for a new cycle of buy and sell.
     def reset(self):
         self.buy_quantity = self.quantity
         self.sell_quantity = self.quantity
     
+    # Refreshes bid/ask/spread.
     def scout(self):
         ticker = Ticker(self.target, validate=True)
         ticker_details = ticker.summary_detail
@@ -30,6 +32,7 @@ class Merchant(object):
         max_price = round(self.bid + (self.spread * self.fraction_of_spread), 2)
         print("Bidding up from bid of", self.bid, "to max price of", max_price, "in steps of", self.price_step, "with buy quantity of", self.buy_quantity)
 
+        # Create new order if order has not been initialized.
         if self.order == None:
             trade = ib.placeOrder(self.stock, LimitOrder('BUY', self.buy_quantity, self.bid))
             ib.sleep(1)
@@ -38,6 +41,7 @@ class Merchant(object):
             self.order.lmtPrice = self.bid
             trade = ib.placeOrder(self.stock, self.order)
 
+        # Modify the order incrementing the bid until max_price is reached, then return leftover order.
         while self.bid < max_price:
             timer = 0
             while timer < self.wait_for_fill:
@@ -59,6 +63,7 @@ class Merchant(object):
         min_price = round(self.ask - (self.spread * self.fraction_of_spread), 2)
         print("Asking down from ask of", self.ask, "to min price of", min_price, "in steps of", self.price_step, "with buy quantity of", self.quantity)
         
+        # Create new order if order has not been initialized.
         if self.order == None:
             trade = ib.placeOrder(self.stock, LimitOrder('SELL', self.quantity, self.ask))
             ib.sleep(1)
@@ -67,6 +72,7 @@ class Merchant(object):
             self.order.lmtPrice = self.bid
             trade = ib.placeOrder(self.stock, self.order)
 
+        # Modify the order incrementing the bid until max_price is reached, then return leftover order.
         while self.ask > min_price:
             timer = 0
             while timer < self.wait_for_fill:
@@ -96,12 +102,16 @@ machine.add_transition('sell', 'greedy', 'fearful', before='scout', after='sell_
 machine.add_transition('sell', 'fearful', 'fearful', before='scout', after='sell_high')
 machine.add_transition('sleep', 'fearful', 'content', before='reset')  
 
+
+# While there's leftover, keep buying.
 anfortas.buy()
 while USLM.buy_quantity > 0:
     USLM.buy()
 
+# While there's leftover, keep selling.
 anfortas.sell()
 while USLM.sell_quantity > 0:
     USLM.sell()
-    
+
+# Reset quantity.
 anfortas.sleep()
