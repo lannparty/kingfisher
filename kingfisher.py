@@ -105,13 +105,13 @@ machine.add_transition('sleep', 'fearful', 'content', before='reset')
 
 # While there's leftover, keep buying.
 anfortas.buy()
-while USLM.buy_quantity > 0:
-    USLM.buy()
+while anfortas.buy_quantity > 0:
+    anfortas.buy()
 
 # While there's leftover, keep selling.
 anfortas.sell()
-while USLM.sell_quantity > 0:
-    USLM.sell()
+while anfortas.sell_quantity > 0:
+    anfortas.sell()
 
 # Reset quantity.
 anfortas.sleep()
