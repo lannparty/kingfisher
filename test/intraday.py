@@ -1,20 +1,3 @@
-'''
-import yfinance as yf  
-
-
-ticker = 'USLM'
-data = yf.download('USLM','2021-02-01','2021-03-26')
-print(ticker)
-print(data["Volume"])
-
-def get_current_price(symbol):
-    ticker = yf.Ticker(symbol)
-    todays_data = ticker.history(period='1d')
-    return todays_data
-
-print(get_current_price('TSLA'))
-'''
-
 import requests
 import json
 import numpy
