@@ -1,7 +1,6 @@
 from ib_insync import *
 from transitions import Machine
 from yahooquery import Ticker
-import os
 
 class Merchant(object):
     def __init__(self, target, quantity, price_step, fraction_of_spread, wait_for_fill):
@@ -22,13 +21,13 @@ class Merchant(object):
         self.sell_quantity = self.quantity
     
     # Refreshes bid/ask/spread.
-    def get_spread(self):
+    def scout(self):
         ticker = Ticker(self.target, validate=True)
         ticker_details = ticker.summary_detail
         self.bid = ticker_details[self.target].get("bid")
         self.ask = ticker_details[self.target].get("ask")
         self.spread = round((self.ask - self.bid), 2)
-
+    
     def buy_low(self):
         max_price = round(self.bid + (self.spread * self.fraction_of_spread), 2)
         print("Bidding up from bid of", self.bid, "to max price of", max_price, "in steps of", self.price_step, "with buy quantity of", self.buy_quantity)
@@ -91,48 +90,29 @@ class Merchant(object):
         self.sell_quantity = trade.orderStatus.remaining
         return trade.orderStatus.remaining
 
-target = os.getenv("KINGFISHER_TARGET")
-strategy = os.getenv("KINGFISHER_STRATEGY")
-quantity = int(os.getenv("KINGFISHER_QUANTITY"))
-price_step = float(os.getenv("KINGFISHER_PRICE_STEP"))
-fraction_of_spread = float(os.getenv("KINGFISHER_FRACTION_OF_SPREAD"))
-wait_for_fill = int(os.getenv("KINGFISHER_WAIT_FOR_FILL"))
-client_id = int(os.getenv("KINGFISHER_CLIENT_ID"))
-ib_host = os.getenv("KINGFISHER_IB_HOST")
-ib_port = int(os.getenv("KINGFISHER_IB_PORT"))
-
 ib = IB()
-ib.connect(ib_host, ib_port, clientId=client_id)
-
-anfortas = Merchant(target=target, quantity=quantity, price_step=price_step, fraction_of_spread=fraction_of_spread, wait_for_fill=wait_for_fill)
+clientId = 1
+ib.connect('127.0.0.1', 7497, clientId=1)
+anfortas = Merchant(target="USLM", quantity=10, price_step=.05, fraction_of_spread=.30, wait_for_fill=15)
 
 machine = Machine(anfortas, ['content', 'greedy', 'fearful'], initial='content')
-machine.add_transition('buy', 'content', 'greedy', before='get_spread', after='buy_low')
-machine.add_transition('buy', 'greedy', 'greedy', before='get_spread', after='buy_low')
-machine.add_transition('sell', 'greedy', 'fearful', before='get_spread', after='sell_high')
-machine.add_transition('sell', 'fearful', 'fearful', before='get_spread', after='sell_high')
-machine.add_transition('sell', 'content', 'fearful', before='get_spread', after='sell_high')
-machine.add_transition('sleep', 'fearful', 'content', before='reset')
-machine.add_transition('sleep', 'content', 'content', before='reset')
+machine.add_transition('buy', 'content', 'greedy', before='scout', after='buy_low')
+machine.add_transition('buy', 'greedy', 'greedy', before='scout', after='buy_low')
+machine.add_transition('sell', 'greedy', 'fearful', before='scout', after='sell_high')
+machine.add_transition('sell', 'fearful', 'fearful', before='scout', after='sell_high')
+machine.add_transition('sell', 'content', 'fearful', before='scout', after='sell_high')
+machine.add_transition('sleep', 'fearful', 'content', before='reset')  
 
-if strategy == "buy_first":
-    while True:
-        # While there's leftover, keep buying.
-        anfortas.buy()
-        while anfortas.buy_quantity > 0:
-            anfortas.buy()
-        # While there's leftover, keep selling.
-        anfortas.sell()
-        while anfortas.sell_quantity > 0:
-            anfortas.sell()
-        # Reset quantity.
-        anfortas.sleep()
-elif strategy == "sell_first":
-    while True:
-        anfortas.sell()
-        while anfortas.sell_quantity > 0:
-            anfortas.sell()
-        anfortas.buy()
-        while anfortas.buy_quantity > 0:
-            anfortas.buy()
-        antorfas.sleep()
+
+# While there's leftover, keep buying.
+anfortas.buy()
+while anfortas.buy_quantity > 0:
+    anfortas.buy()
+
+# While there's leftover, keep selling.
+anfortas.sell()
+while anfortas.sell_quantity > 0:
+    anfortas.sell()
+
+# Reset quantity.
+anfortas.sleep()

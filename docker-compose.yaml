@@ -1,0 +1,14 @@
+version: "3"
+services:
+  USLM:
+    image: 5686ddb2be9d
+    container_name: kingfisher_USLM
+    environment:
+    - "KINGFISHER_TARGET=USLM"
+    - "KINGFISHER_QUANTITY=20"
+    - "KINGFISHER_PRICE_STEP=.01"
+    - "KINGFISHER_FRACTION_OF_SPREAD=.1"
+    - "KINGFISHER_WAIT_FOr_FILL=10"
+    - "KINGFISHER_CLIENT_ID=1"
+    - "KINGFISHER_IB_ADDRESS=host.docker.internal"
+    - "KINGFISHER_IB_PORT=7497"
