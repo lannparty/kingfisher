@@ -98,7 +98,7 @@ price_step = float(os.getenv("KINGFISHER_PRICE_STEP"))
 fraction_of_spread = float(os.getenv("KINGFISHER_FRACTION_OF_SPREAD"))
 wait_for_fill = int(os.getenv("KINGFISHER_WAIT_FOR_FILL"))
 client_id = int(os.getenv("KINGFISHER_CLIENT_ID"))
-ib_host = os.getenv("KINGFISHER_IB_HOST")
+ib_host = os.getenv("KINGFISHER_IB_ADDRESS")
 ib_port = int(os.getenv("KINGFISHER_IB_PORT"))
 
 ib = IB()
