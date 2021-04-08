@@ -25,11 +25,11 @@ def get_bid_ask(symbols: list):
         try:
             bid = ticker_details[symbol].get("bid")
             ask = ticker_details[symbol].get("ask")
-            volume = ticker_details[symbol].get("volume")
+            average_volume = ticker_details[symbol].get("Avg. Volume")
             if bid and ask:
                 spread = round(ask - bid, 2)
                 print(f"{symbol} {spread}", file=sys.stderr)
-                spreads.append((symbol, bid, ask, spread, volume))
+                spreads.append((symbol, bid, ask, spread, average_volume))
             else:
                 continue
         except Exception as e:
@@ -40,7 +40,6 @@ def get_bid_ask(symbols: list):
 
 if __name__ == "__main__":
     symbols = get_symbols()
-    print(symbols)
     spreads = get_bid_ask(symbols)
     spreads.sort(key=lambda i: i[3])
     for spread in spreads:
