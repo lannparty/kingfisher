@@ -28,12 +28,12 @@ services:
     - KINGFISHER_IB_ADDRESS=127.0.0.1
     - KINGFISHER_IB_PORT=7497
     - KINGFISHER_STRATEGY=sell_first
-  kingfisher_LIVE_buy_first:
+  kingfisher_CATC_buy_first:
     image: 5969a22a2064
-    container_name: kingfisher_LIVE_buy_first
+    container_name: kingfisher_CATC_buy_first
     network_mode: host
     environment:
-    - KINGFISHER_TARGET=LIVE
+    - KINGFISHER_TARGET=CATC
     - KINGFISHER_QUANTITY=10
     - KINGFISHER_PRICE_STEP=.01
     - KINGFISHER_FRACTION_OF_SPREAD=.1
@@ -42,17 +42,73 @@ services:
     - KINGFISHER_IB_ADDRESS=127.0.0.1
     - KINGFISHER_IB_PORT=7497
     - KINGFISHER_STRATEGY=buy_first
-  kingfisher_LIVE_sell_first:
+  kingfisher_CATC_sell_first:
     image: 5969a22a2064
-    container_name: kingfisher_LIVE_sell_first
+    container_name: kingfisher_CATC_sell_first
     network_mode: host
     environment:
-    - KINGFISHER_TARGET=LIVE
+    - KINGFISHER_TARGET=CATC
     - KINGFISHER_QUANTITY=10
     - KINGFISHER_PRICE_STEP=.01
     - KINGFISHER_FRACTION_OF_SPREAD=.1
     - KINGFISHER_WAIT_FOR_FILL=10
     - KINGFISHER_CLIENT_ID=4
+    - KINGFISHER_IB_ADDRESS=127.0.0.1
+    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_STRATEGY=sell_first
+  kingfisher_OFLX_buy_first:
+    image: 5969a22a2064
+    container_name: kingfisher_OFLX_buy_first
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=OFLX
+    - KINGFISHER_QUANTITY=10
+    - KINGFISHER_PRICE_STEP=.01
+    - KINGFISHER_FRACTION_OF_SPREAD=.1
+    - KINGFISHER_WAIT_FOR_FILL=10
+    - KINGFISHER_CLIENT_ID=5
+    - KINGFISHER_IB_ADDRESS=127.0.0.1
+    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_STRATEGY=buy_first
+  kingfisher_OFLX_sell_first:
+    image: 5969a22a2064
+    container_name: kingfisher_OFLX_sell_first
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=OFLX
+    - KINGFISHER_QUANTITY=10
+    - KINGFISHER_PRICE_STEP=.01
+    - KINGFISHER_FRACTION_OF_SPREAD=.1
+    - KINGFISHER_WAIT_FOR_FILL=10
+    - KINGFISHER_CLIENT_ID=6
+    - KINGFISHER_IB_ADDRESS=127.0.0.1
+    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_STRATEGY=sell_first
+  kingfisher_WINA_buy_first:
+    image: 5969a22a2064
+    container_name: kingfisher_WINA_buy_first
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=WINA
+    - KINGFISHER_QUANTITY=10
+    - KINGFISHER_PRICE_STEP=.01
+    - KINGFISHER_FRACTION_OF_SPREAD=.1
+    - KINGFISHER_WAIT_FOR_FILL=10
+    - KINGFISHER_CLIENT_ID=7
+    - KINGFISHER_IB_ADDRESS=127.0.0.1
+    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_STRATEGY=buy_first
+  kingfisher_WINA_sell_first:
+    image: 5969a22a2064
+    container_name: kingfisher_WINA_sell_first
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=WINA
+    - KINGFISHER_QUANTITY=10
+    - KINGFISHER_PRICE_STEP=.01
+    - KINGFISHER_FRACTION_OF_SPREAD=.1
+    - KINGFISHER_WAIT_FOR_FILL=10
+    - KINGFISHER_CLIENT_ID=8
     - KINGFISHER_IB_ADDRESS=127.0.0.1
     - KINGFISHER_IB_PORT=7497
     - KINGFISHER_STRATEGY=sell_first

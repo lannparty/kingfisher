@@ -16,31 +16,7 @@ def get_symbols():
                 symbols.append(symbol)
     return symbols
 
-
-def get_bid_ask(symbols: list):
-    ticker = Ticker(symbols, validate=True, progress=True)
-    ticker_details = ticker.summary_detail
-    spreads = []
-    for symbol in symbols:
-        try:
-            bid = ticker_details[symbol].get("bid")
-            ask = ticker_details[symbol].get("ask")
-            average_volume = ticker_details[symbol].get("Avg. Volume")
-            if bid and ask:
-                spread = round(ask - bid, 2)
-                print(f"{symbol} {spread}", file=sys.stderr)
-                spreads.append((symbol, bid, ask, spread, average_volume))
-            else:
-                continue
-        except Exception as e:
-            print(f"{symbol} - Error {e}", file=sys.stderr)
-            continue
-    return spreads
-
-
 if __name__ == "__main__":
     symbols = get_symbols()
-    spreads = get_bid_ask(symbols)
-    spreads.sort(key=lambda i: i[3])
-    for spread in spreads:
-        print(spread)
+    NASDAQ = Ticker(symbols, validate=True, progress=True)
+    print(NASDAQ.summary_detail)
