@@ -4,7 +4,8 @@ COPY . /usr/src/app/kingfisher/
 WORKDIR /usr/src/app/kingfisher/
 
 RUN pip install --no-cache-dir poetry
-RUN poetry config virtualenvs.create false && poetry install --no-dev
+RUN poetry config virtualenvs.create false 
+RUN poetry install --no-dev
 
 ENV PYTHONPATH=/usr/src/app/kingfisher
 #ENV KINGFISHER_TARGET="USLM"

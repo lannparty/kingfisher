@@ -8,15 +8,9 @@ authors = ["Luan Truong <luanqtruong@gmail.com>"]
 python = "^3.8"
 ib-insync = "^0.9.65"
 yahooquery = "^2.2.15"
-ib-insync = "^0.9.65"
-transitions = "^0.8.7"
+transitions = "^0.8.8"
 
 [tool.poetry.dev-dependencies]
-black = "^20.8b1"
-pytest = "^6.2.2"
-graphviz = "^0.16"
-pygraphviz = "^1.7"
-transitions = {version = "^0.8.7", extras = ["diagrams"]}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
