@@ -6,12 +6,12 @@
 docker build .
 ```
   
-2. Pass imageID into dirty.sh and clean.sh  
-3. Declare targets in dirty.sh   
+2. Pass imageID into multi.sh and clean.sh  
+3. Declare targets in multi.sh   
 
 5. Launch merchants:  
 ```
-sh dirty.sh
+sh multi.sh
 ```
   
 6. Clean up:  
