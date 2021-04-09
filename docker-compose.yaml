@@ -1,142 +1,164 @@
 version: "3"
 services:
-  kingfisher_USLM_buy_first:
-    image: 5969a22a2064
-    container_name: kingfisher_USLM_buy_first
+  USLM-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: USLM-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=USLM
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=1
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=buy_first
-  kingfisher_USLM_sell_first:
-    image: 5969a22a2064
-    container_name: kingfisher_USLM_sell_first
+  USLM-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: USLM-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=USLM
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=2
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=sell_first
-  kingfisher_JOUT_buy_first:
-    image: 5969a22a2064
-    container_name: kingfisher_JOUT_buy_first
+  JOUT-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: JOUT-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=JOUT
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=3
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=buy_first
-  kingfisher_JOUT_sell_first:
-    image: 5969a22a2064
-    container_name: kingfisher_JOUT_sell_first
+  JOUT-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: JOUT-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=JOUT
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=4
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=sell_first
-  kingfisher_OFLX_buy_first:
-    image: 5969a22a2064
-    container_name: kingfisher_OFLX_buy_first
+  OFLX-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: OFLX-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=OFLX
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=5
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=buy_first
-  kingfisher_OFLX_sell_first:
-    image: 5969a22a2064
-    container_name: kingfisher_OFLX_sell_first
+  OFLX-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: OFLX-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=OFLX
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=6
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=sell_first
-  kingfisher_WINA_buy_first:
-    image: 5969a22a2064
-    container_name: kingfisher_WINA_buy_first
+  WINA-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: WINA-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=WINA
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=7
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=buy_first
-  kingfisher_WINA_sell_first:
-    image: 5969a22a2064
-    container_name: kingfisher_WINA_sell_first
+  WINA-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: WINA-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=WINA
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=8
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=sell_first
-  kingfisher_BFC_buy_first:
-    image: 5969a22a2064
-    container_name: kingfisher_BFC_buy_first
+  BFC-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: BFC-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=BFC
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=9
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
     - KINGFISHER_STRATEGY=buy_first
-  kingfisher_BFC_sell_first:
-    image: 5969a22a2064
-    container_name: kingfisher_BFC_sell_first
+  BFC-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: BFC-buy_first-2021-04-08
     network_mode: host
     environment:
     - KINGFISHER_TARGET=BFC
-    - KINGFISHER_QUANTITY=10
-    - KINGFISHER_PRICE_STEP=.01
-    - KINGFISHER_FRACTION_OF_SPREAD=.1
-    - KINGFISHER_WAIT_FOR_FILL=10
-    - KINGFISHER_CLIENT_ID=10
-    - KINGFISHER_IB_ADDRESS=127.0.0.1
-    - KINGFISHER_IB_PORT=7497
+    - KINGFISHER_CLIENT_ID=
+    - KINGFISHER_STRATEGY=sell_first
+version: "3"
+services:
+  USLM-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: USLM-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=USLM
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=buy_first
+  USLM-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: USLM-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=USLM
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=sell_first
+  JOUT-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: JOUT-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=JOUT
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=buy_first
+  JOUT-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: JOUT-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=JOUT
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=sell_first
+  OFLX-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: OFLX-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=OFLX
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=buy_first
+  OFLX-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: OFLX-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=OFLX
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=sell_first
+  WINA-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: WINA-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=WINA
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=buy_first
+  WINA-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: WINA-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=WINA
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=sell_first
+  BFC-buy_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: BFC-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=BFC
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
+    - KINGFISHER_STRATEGY=buy_first
+  BFC-sell_first-2021-04-08
+    image: 1e61ffc591cb
+    container_name: BFC-buy_first-2021-04-08
+    network_mode: host
+    environment:
+    - KINGFISHER_TARGET=BFC
+    - KINGFISHER_CLIENT_ID=${CLIENT_ID}
     - KINGFISHER_STRATEGY=sell_first
