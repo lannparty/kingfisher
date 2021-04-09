@@ -2,7 +2,7 @@
 
 IMAGE=192e9823b613
 TARGETS="USLM JOUT OFLX WINA BFC"
-DATE=`date +%F`
+DATE=`date +%F-%H-%M-%S`
 
 cat << EOF >> docker-compose.yaml
 version: "3"
@@ -40,3 +40,5 @@ do
   cat docker-compose.yaml |grep '${CLIENT_ID}' > /dev/null
 done
 
+docker-compose up -d
+rm docker-compose.yaml
