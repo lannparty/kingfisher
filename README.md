@@ -1,25 +1,25 @@
 # kingfisher
 
-Getting Started  
-Build Kingfisher image:  
+# Getting Started  
+1. Build Kingfisher image:  
 ```
 docker build .
 ```
   
-Pass imageID into docker-compose-template.sh and clean.sh  
-Declare targets in docker-compose-template.sh   
+2. Pass imageID into docker-compose-template.sh and clean.sh  
+3. Declare targets in docker-compose-template.sh   
 
-Generate docker-compose.yaml  
+4. Generate docker-compose.yaml  
 ```
 docker-compose-template.sh
 ```
   
-Launch merchants:  
+5. Launch merchants:  
 ```
 docker-compose up -d
 ```
   
-Clean up:  
+6. Clean up:  
 ```
 sh clean.sh
 ```
