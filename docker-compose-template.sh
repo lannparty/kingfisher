@@ -1,8 +1,8 @@
 #!/bin/bash
 
+IMAGE=192e9823b613
 TARGETS="USLM JOUT OFLX WINA BFC"
 DATE=`date +%F`
-IMAGE=1e61ffc591cb
 
 cat << EOF >> docker-compose.yaml
 version: "3"
@@ -12,7 +12,7 @@ EOF
 for TARGET in ${TARGETS}
 do
 cat << EOF >> docker-compose.yaml
-  ${TARGET}-buy_first-${DATE}
+  ${TARGET}-buy_first-${DATE}:
     image: ${IMAGE}
     container_name: ${TARGET}-buy_first-${DATE}
     network_mode: host
@@ -20,9 +20,9 @@ cat << EOF >> docker-compose.yaml
     - KINGFISHER_TARGET=${TARGET}
     - KINGFISHER_CLIENT_ID=\${CLIENT_ID}
     - KINGFISHER_STRATEGY=buy_first
-  ${TARGET}-sell_first-${DATE}
+  ${TARGET}-sell_first-${DATE}:
     image: ${IMAGE}
-    container_name: ${TARGET}-buy_first-${DATE}
+    container_name: ${TARGET}-sell_first-${DATE}
     network_mode: host
     environment:
     - KINGFISHER_TARGET=${TARGET}
@@ -31,12 +31,12 @@ cat << EOF >> docker-compose.yaml
 EOF
 done
 
-#counter=1
-#cat docker-compose.yaml |grep '${CLIENT_ID}'
-#until $? == 1
-#do
-#  sed -i s/\${CLIENT_ID}/$counter/ docker-compose.yaml
-#  counter=$((counter+1))
-#  echo $counter
-#  cat docker-compose.yaml |grep '${CLIENT_ID}'
-#done
+counter=1
+cat docker-compose.yaml |grep '${CLIENT_ID}' > /dev/null
+until [ $? -eq 1 ]
+do
+  sed -i 0,/\${CLIENT_ID}/s//$counter/ docker-compose.yaml
+  counter=$((counter+1))
+  cat docker-compose.yaml |grep '${CLIENT_ID}' > /dev/null
+done
+

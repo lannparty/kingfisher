@@ -27,19 +27,17 @@ class Merchant(object):
     def get_spread(self):
         ticker = Ticker(self.target, validate=True)
         ticker_details = ticker.summary_detail
-        #self.bid = ticker_details[self.target].get("bid")
-        #self.ask = ticker_details[self.target].get("ask")
-        self.bid = 130
-        self.ask = 150
+        self.bid = ticker_details[self.target].get("bid")
+        self.ask = ticker_details[self.target].get("ask")
         self.spread = round((self.ask - self.bid), 2)
-        #if self.spread < .5:
-        #    print("Spread on", self.target, "is less than 50 cents.")
-        #    exit(2)
+        if self.spread < .5:
+            print("Spread on", self.target, "is less than 50 cents.")
+            exit(2)
 
     def buy_low(self):
         max_price = round(self.bid + (self.spread * self.fraction_of_spread), 2)
         
-        # If currently short, buy extra to cover.
+        # If currently short and want to reconcile, buy extra to cover.
         if not self.position_reconciled:
             additional_buy = 0
             for i in ib.positions(account=self.account):
@@ -81,7 +79,7 @@ class Merchant(object):
     def sell_high(self):
         min_price = round(self.ask - (self.spread * self.fraction_of_spread), 2)
 
-        # If currently own, sell down to zero.
+        # If currently own and want to reconcile, sell down to zero.
         if not self.position_reconciled:
             additional_sell = 0
             for i in ib.positions(account=self.account):
@@ -150,6 +148,7 @@ ib.connect(ib_host, ib_port, clientId=client_id)
 
 anfortas = Merchant(account=ib_account, target=target, quantity=quantity, price_step=price_step, fraction_of_spread=fraction_of_spread, wait_for_fill=wait_for_fill, position_reconciled=position_reconciled)
 
+# Declare state, transitions and prereqs.
 machine = Machine(anfortas, ['content', 'greedy', 'fearful'], initial='content')
 
 machine.add_transition('buy', 'content', 'greedy', before='get_spread', after='buy_low')
@@ -164,6 +163,7 @@ machine.add_transition('sleep', 'content', 'content', before='reset')
 machine.add_transition('sleep', 'greedy', 'content', before='reset')
 machine.add_transition('sleep', 'fearful', 'content', before='reset')
 
+# For clean.sh, cancel all orders.
 if cleaning_mode:
     if len(ib.reqOpenOrders()) > 0:
         for i in ib.reqOpenOrders():
