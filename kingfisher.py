@@ -31,8 +31,8 @@ class Merchant(object):
         self.ask = ticker_details[self.target].get("ask")
         self.spread = round((self.ask - self.bid), 2)
         if self.spread < .5:
-            print("Spread on", self.target, "is less than 50 cents.")
-            exit(2)
+            print("Spread on", self.target, "is less than 50 cents)
+            exit(51)
 
     def buy_low(self):
         max_price = round(self.bid + (self.spread * self.fraction_of_spread), 2)
@@ -64,6 +64,9 @@ class Merchant(object):
             while timer < self.wait_for_fill:
                 ib.sleep(1)
                 print(datetime.datetime.now(), "Submitted price:", self.bid, "status:", trade.orderStatus.status)
+                if trade.orderStatus.status == "Cancelled":
+                    print("Order cancelled")
+                    exit(52)
                 timer += 1
             if trade.orderStatus.remaining == 0:
                 self.buy_quantity = trade.orderStatus.remaining
