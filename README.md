@@ -18,3 +18,7 @@ sh multi.sh
 ```
 sh clean.sh
 ```
+crontab
+```
+* 7 * * mon-fri
+```
