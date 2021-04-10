@@ -21,4 +21,5 @@ sh clean.sh
 crontab
 ```
 * 7 * * mon-fri
+* 13 * * mon-fri
 ```
