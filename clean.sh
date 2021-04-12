@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=192e9823b613
+IMAGE=2d0744b8fcda
 DOCKERLOGDIR=/var/lib/docker/containers
 
 docker stop $(docker ps -a -q)
