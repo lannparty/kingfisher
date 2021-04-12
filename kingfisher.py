@@ -31,7 +31,7 @@ class Merchant(object):
         self.ask = ticker_details[self.target].get("ask")
         self.spread = round((self.ask - self.bid), 2)
         if self.spread < .5:
-            print("Spread on", self.target, "is less than 50 cents)
+            print("Spread on", self.target, "is less than 50 cents")
             exit(51)
 
     def buy_low(self):
