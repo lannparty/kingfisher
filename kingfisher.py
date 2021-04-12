@@ -40,10 +40,11 @@ class Merchant(object):
         # If currently short and want to reconcile, buy extra to cover.
         if not self.position_reconciled:
             additional_buy = 0
+            print("Current positions:", ib.positions(account=self.account))
             for i in ib.positions(account=self.account):
                 if self.target == i.contract.symbol:
-                    print("Currently own", i.position, "shares of", i.contract.symbol, "buying additional shares to reconcile")
                     if i.position < 0:
+                        print("Currently own", i.position, "shares of", i.contract.symbol, "buying additional shares to reconcile")
                         additional_buy = abs(i.position)
             self.buy_quantity = self.quantity + additional_buy
         self.position_reconciled = True
@@ -85,10 +86,11 @@ class Merchant(object):
         # If currently own and want to reconcile, sell down to zero.
         if not self.position_reconciled:
             additional_sell = 0
+            print("Current positions:", ib.positions(account=self.account))
             for i in ib.positions(account=self.account):
                 if self.target == i.contract.symbol:
-                    print("Currently own", i.position, "shares of", i.contract.symbol, "selling additional shares to reconcile")
                     if i.position > 0:
+                        print("Currently own", i.position, "shares of", i.contract.symbol, "selling additional shares to reconcile")
                         additional_sell = abs(i.position)
             self.sell_quantity = self.quantity + additional_sell
         self.position_reconciled = True
