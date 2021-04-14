@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=2d0744b8fcda
+IMAGE=7d1944d2d41c
 TARGETS="USLM JOUT OFLX WINA BFC"
 DATE=`date +%F-%H-%M-%S`
 
