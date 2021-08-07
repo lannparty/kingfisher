@@ -4,6 +4,9 @@ If you're lucky you could make upwards of negative thirty dollars a day, and if 
 
   
 Why this doesn't work: Read Flash Boys: Michael Lewis (2014)
+# Overview  
+![image](https://user-images.githubusercontent.com/17228005/128608847-ce55c1ab-9162-40f0-9bab-43fe320fab13.png)
+
 
 # Getting Started  
 1. Build Kingfisher image:  
